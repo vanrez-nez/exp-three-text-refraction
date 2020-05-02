@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 const CAMERA_FOV = 75;
 const CAMERA_ASPECT = 2;
 const CAMERA_NEAR = 0.1;
-const CAMERA_FAR = 1000;
+const CAMERA_FAR = 2000;
 
 const NOOP = () => {};
 
@@ -43,15 +43,13 @@ export default class ThreeApp {
       canvas: document.getElementById('js-canvas'),
       antialias: true
     });
-    this.camera = new THREE.PerspectiveCamera(
-      CAMERA_FOV,
-      CAMERA_ASPECT,
-      CAMERA_NEAR,
-      CAMERA_FAR
-    );
-    this.camera.position.z = 10;
+
+    this.camera = new THREE.OrthographicCamera();
+    this.camera.near = CAMERA_NEAR;
+    this.camera.far = CAMERA_FAR;
+    this.camera.position.z = 500;
     this.scene = new THREE.Scene();
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     this.scene.add(this.ambientLight);
     this.clock = new THREE.Clock();
 
@@ -61,10 +59,7 @@ export default class ThreeApp {
         radius: CAMERA_FAR / 3,
         detail: 1,
         intensity: 1.2,
-        // colorFrom: 0x5c4070,
-        // colorFrom: 0xfffce5, // greenish
         colorFrom: 0xffffff, // bluish
-        // colorFrom: 0xe6a8a1, // redish
         colorTo: 0x6a6a84,
         hemisphereLight: true,
       });
@@ -81,7 +76,7 @@ export default class ThreeApp {
     }
 
     if (axesHelper) {
-      this.axesHelper = new THREE.AxesHelper(500);
+      this.axesHelper = new THREE.AxesHelper(1000);
       this.scene.add(this.axesHelper);
     }
 
@@ -107,7 +102,11 @@ export default class ThreeApp {
     if (this.width !== width || this.height !== height) {
       this.width = width * pixelRatio | 0;
       this.height = height * pixelRatio | 0;
-      camera.aspect = width / height;
+      camera.left = -width / 2;
+      camera.right = width / 2;
+      camera.top = height / 2;
+      camera.bottom = height / -2;
+      camera.far = Math.max(width, height);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
       this.onResizeCallback(width, height);
