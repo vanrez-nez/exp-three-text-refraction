@@ -1,0 +1,1 @@
+msdf-bmfont -o Michroma-Regular.png -s 72 -m 512,512 -i charset.txt -t msdf -f json -r 3 Michroma-Regular.ttf
