@@ -4,7 +4,6 @@ import createText from 'three-bmfont-text';
 import createMSDFShader from 'three-bmfont-text/shaders/msdf';
 import FontJson from '../assets/JosefinSans-Bold.json';
 import FontImage from '../assets/JosefinSans-Bold.png';
-
 import FragmentMSDF from '../shaders/fragment-msdf.glsl';
 import VertexMSDF from '../shaders/vertex-msdf.glsl';
 

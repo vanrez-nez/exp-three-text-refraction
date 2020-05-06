@@ -10,7 +10,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "load-bmfont": "^1.4.0",
-    "three": "0.114.0",
+    "three": "^0.116.1",
     "three-bmfont-text": "dmarcos/three-bmfont-text#1babdf8507"
   },
   "devDependencies": {
