@@ -39,9 +39,10 @@ export default class ThreeApp {
     this.onMouseClickCallback = onMouseClickCallback;
     this.onMouseMoveCallback = onMouseMoveCallback;
     this.onMouseWheelCallback = onMouseWheelCallback;
+
     this.renderer = new THREE.WebGLRenderer({
       canvas: document.getElementById('js-canvas'),
-      antialias: true
+      antialias: false
     });
 
     this.camera = new THREE.OrthographicCamera();
